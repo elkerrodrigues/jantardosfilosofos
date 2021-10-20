@@ -45,9 +45,12 @@ class Jantar {
 		for (int i = 0; i < filosofos.length; i++) {
 			Object hashiEsquerdo = hashis[i];
 			Object hashiDireito = hashis[(i + 1) % hashis.length];
-			
-			filosofos[i] = new Filosofo(hashiEsquerdo, hashiDireito);
-			
+
+			if (i == filosofos.length - 1) {
+				filosofos[i] = new Filosofo(hashiDireito, hashiEsquerdo);
+			} else {
+				filosofos[i] = new Filosofo(hashiEsquerdo, hashiDireito);
+			}
 			Thread th = new Thread(filosofos[i], "Filosofo " + (i + 1));
 			th.start();
 		}
